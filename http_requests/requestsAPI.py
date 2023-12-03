@@ -1,7 +1,7 @@
-from dotenv import load_dotenv
 import requests
 from requests.cookies import RequestsCookieJar
 import json
+from dotenv import load_dotenv
 import os
 from os.path import join, dirname
 
@@ -29,10 +29,7 @@ def get_initial_fetch():
 
 def get_further_fetch(last_time, last_id):
     response = requests.get(f'https://www.pathofexile.com/api/guild/{guild_profile_id}/stash/history?from={last_time}&fromid={last_id}', cookies=cookie_jar, headers=headers)
-    print(f'https://www.pathofexile.com/api/guild/{guild_profile_id}/stash/history?from={last_time}&fromid={last_id}')
     if response.status_code == 200:
         return json.loads(response.text)
     else:
         print(f"Error: {response.status_code} - {response.text}")
-
-## stop when reach existing id
