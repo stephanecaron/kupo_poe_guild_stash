@@ -28,7 +28,7 @@ def main():
 
                     connection.commit()
                     print('Finish fetch & dump, retrying in 60 seconds')
-                    sleep(60)
+                    sleep(20)
 
     except KeyboardInterrupt:
         print('Program interrupted by user. Cleaning up...')
