@@ -22,9 +22,11 @@ headers = {
 
 
 def get_initial_fetch():
+    print('initial fetch request...')
     response = requests.get(f'https://www.pathofexile.com/api/guild/{guild_profile_id}/stash/history', cookies=cookie_jar, headers=headers)
 
     if response.status_code == 200:
+        print('received fetch, parsing..')
         return json.loads(response.text)
     else:
         print(f"Error: {response.status_code} - {response.text}")

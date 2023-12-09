@@ -32,9 +32,9 @@ def main():
                             break
                         sleep(2)
 
-                        connection.commit()
-                        print('Finish fetch & dump, retrying in 40 seconds')
-                        sleep(40)
+                    connection.commit()
+                    print('Finish fetch & dump, retrying in 40 seconds')
+                    sleep(40)
 
     except KeyboardInterrupt:
         print('Program interrupted by user. Cleaning up...')
