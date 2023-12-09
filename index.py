@@ -8,6 +8,9 @@ def main():
             with connection.cursor() as cursor:
                 while True:
                     data = requestsAPI.get_initial_fetch()
+                    if data is None:
+                        sleep(60)
+                        continue
                     entries = data['entries']
                     continue_fetch_loop = data['truncated']
                     last_time = entries[-1]['time']
@@ -18,17 +21,20 @@ def main():
 
                     while continue_fetch_loop:
                         data = requestsAPI.get_further_fetch(last_time, last_id)
+                        if data is None:
+                            sleep(60)
+                            break
                         entries = data['entries']
                         last_time = entries[-1]['time']
                         last_id = entries[-1]['id']
                         continue_fetch_loop = sqlOperations.add_entries(entries, highest_id, cursor)
                         if not data['truncated']:
                             break
-                        sleep(1)
+                        sleep(2)
 
-                    connection.commit()
-                    print('Finish fetch & dump, retrying in 60 seconds')
-                    sleep(20)
+                        connection.commit()
+                        print('Finish fetch & dump, retrying in 40 seconds')
+                        sleep(40)
 
     except KeyboardInterrupt:
         print('Program interrupted by user. Cleaning up...')
