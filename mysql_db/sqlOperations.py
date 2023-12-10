@@ -5,6 +5,12 @@ def get_highest_id(cursor):
     result = cursor.fetchall()
     return result[0][0]
 
+def get_inventory_history(cursor):
+    cursor.execute("SELECT * FROM `inventory_history`")
+    result = cursor.fetchall()
+    return result
+
+
 def add_entries(entries, highest_id, cursor):
     for entry in entries:
         if highest_id is not None and int(entry['id']) <= highest_id:
