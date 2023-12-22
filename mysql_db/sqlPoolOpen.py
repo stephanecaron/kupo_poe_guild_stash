@@ -14,7 +14,8 @@ connection_pool = pooling.MySQLConnectionPool(
     user=os.getenv('db_user'),
     password=os.getenv('db_password'),
     database=os.getenv('db_database'),
-    port=os.getenv('db_port')
+    port=os.getenv('db_port'),
+    autocommit=True
 )
 
 def get_connection():
