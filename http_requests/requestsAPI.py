@@ -17,7 +17,7 @@ cookie_jar = RequestsCookieJar()
 cookie_jar.set('POESESSID', poe_session_id, domain='www.pathofexile.com', path='/')
 
 headers = {
-    'User-Agent': 'LHBA guild inventory/transaction tracker, @stephanecaron github'
+    'User-Agent': 'LHBA guild inventory/transaction tracker 2.0, @stephanecaron github'
 }
 
 
